@@ -923,15 +923,15 @@
           </div>
           <p class="used-by">Built for runners, footballers, and anyone chasing a fuller breath.</p>
           <div class="photo-slots">
-            <!--
-              TO ADD YOUR OWN PHOTOS: put an "images" folder next to this
-              HTML file (e.g. images/athlete-1.jpg), then replace each
-              <div class="photo-slot">...</div> below with:
-              <div class="photo-slot"><img src="images/athlete-1.jpg" alt="Athlete" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"></div>
-            -->
-            <div class="photo-slot">Add photo<br>— athlete 1</div>
-            <div class="photo-slot">Add photo<br>— athlete 2</div>
-            <div class="photo-slot">Add photo<br>— athlete 3</div>
+            <div class="photo-slot" style="padding:0;overflow:hidden;">
+              <img src="IMG_1249.png" alt="Runners" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" onerror="this.parentElement.textContent='Add photo — athlete 1';this.parentElement.style.padding='8px';">
+            </div>
+            <div class="photo-slot" style="padding:0;overflow:hidden;">
+              <img src="IMG_1252.png" alt="Neymar Jr" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" onerror="this.parentElement.textContent='Add photo — athlete 2';this.parentElement.style.padding='8px';">
+            </div>
+            <div class="photo-slot" style="padding:0;overflow:hidden;">
+              <img src="iIMG_1247.png" alt="Carlos Alcaraz" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" onerror="this.parentElement.textContent='Add photo — athlete 3';this.parentElement.style.padding='8px';">
+            </div>
           </div>
         </div>
       </div>
@@ -1193,14 +1193,7 @@
     cart.qty++; renderCheckout();
   });
 
-  // =====================================================================
-  // PAYSTACK SETUP — replace PAYSTACK_PUBLIC_KEY with your real public key
-  // from your Paystack dashboard: Settings -> API Keys & Webhooks -> Public Key.
-  // It's safe to put the PUBLIC key here (never the secret key).
-  // While this is unset (or invalid), "Pay now" quietly falls back to the
-  // WhatsApp order flow instead of failing.
-  // =====================================================================
-  const PAYSTACK_PUBLIC_KEY = 'pk_test_REPLACE_WITH_YOUR_PAYSTACK_PUBLIC_KEY';
+  const PAYSTACK_PUBLIC_KEY = 'pk_live_f56a135aa026de0bf7a7e28ff0db627c2da42559';
 
   const mpesaBox = document.getElementById('coMpesaBox');
   document.querySelectorAll('input[name="coPay"]').forEach(r=>{
