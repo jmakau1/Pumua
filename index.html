@@ -923,14 +923,21 @@
           </div>
           <p class="used-by">Built for runners, footballers, and anyone chasing a fuller breath.</p>
           <div class="photo-slots">
+            <!--
+              EDIT HERE TO CHANGE PHOTOS: each src="images/athlete-N.jpg"
+              below points to a file in an "images" folder next to this
+              HTML file. Replace the file, or change the filename here,
+              to swap a photo. If a file is missing, it falls back to the
+              text placeholder automatically instead of breaking.
+            -->
             <div class="photo-slot" style="padding:0;overflow:hidden;">
-              <img src="IMG_1249.png" alt="Runners" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" onerror="this.parentElement.textContent='Add photo — athlete 1';this.parentElement.style.padding='8px';">
+              <img src="images/athlete-1.jpg" alt="Athlete 1" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" onerror="this.parentElement.textContent='Add photo — athlete 1';this.parentElement.style.padding='8px';">
             </div>
             <div class="photo-slot" style="padding:0;overflow:hidden;">
-              <img src="IMG_1252.png" alt="Neymar Jr" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" onerror="this.parentElement.textContent='Add photo — athlete 2';this.parentElement.style.padding='8px';">
+              <img src="images/athlete-2.jpg" alt="Athlete 2" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" onerror="this.parentElement.textContent='Add photo — athlete 2';this.parentElement.style.padding='8px';">
             </div>
             <div class="photo-slot" style="padding:0;overflow:hidden;">
-              <img src="iIMG_1247.png" alt="Carlos Alcaraz" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" onerror="this.parentElement.textContent='Add photo — athlete 3';this.parentElement.style.padding='8px';">
+              <img src="images/athlete-3.jpg" alt="Athlete 3" style="width:100%;height:100%;object-fit:cover;border-radius:6px;" onerror="this.parentElement.textContent='Add photo — athlete 3';this.parentElement.style.padding='8px';">
             </div>
           </div>
         </div>
@@ -1084,7 +1091,70 @@
   </section>
 
 </div>
+<div id="checkoutOverlay">
+  <div id="checkoutPanel">
+    <button class="close" id="checkoutClose" aria-label="Close checkout">&times;</button>
+    <h3>Complete your order</h3>
+    <p class="sub-note">We'll confirm on WhatsApp and arrange payment or delivery.</p>
 
+    <div class="co-summary">
+      <div class="row">
+        <span class="plan-name" id="coPlanName">Best value</span>
+        <span id="coPlanUnit">30 strips</span>
+      </div>
+      <div class="row">
+        <span>Quantity</span>
+        <span class="qty-ctrl">
+          <button type="button" id="coQtyMinus">&minus;</button>
+          <span id="coQty">1</span>
+          <button type="button" id="coQtyPlus">&plus;</button>
+        </span>
+      </div>
+      <div class="row total">
+        <span>Total</span>
+        <b id="coTotal">KSh 900</b>
+      </div>
+    </div>
+
+    <div class="co-field">
+      <label for="coName">Full name</label>
+      <input type="text" id="coName" placeholder="Jane Wanjiru">
+    </div>
+    <div class="co-field">
+      <label for="coEmail">Email</label>
+      <input type="email" id="coEmail" placeholder="jane@example.com">
+    </div>
+    <div class="co-field">
+      <label for="coPhone">Phone number</label>
+      <input type="tel" id="coPhone" placeholder="07XX XXX XXX">
+    </div>
+    <div class="co-field">
+      <label for="coLocation">Delivery location</label>
+      <input type="text" id="coLocation" placeholder="Estate / area, Nairobi">
+    </div>
+
+    <div class="co-pay-options">
+      <label><input type="radio" name="coPay" value="paystack" checked> Pay now — Card / M-Pesa</label>
+      <label><input type="radio" name="coPay" value="mpesa"> M-Pesa Till (manual)</label>
+      <label><input type="radio" name="coPay" value="cod"> Cash on delivery (Nairobi)</label>
+    </div>
+    <div class="co-mpesa-box" id="coMpesaBox">
+      Send payment to <b>M-Pesa Till: 000000</b> (placeholder — swap in your real Till/Paybill), then add the M-Pesa message code below so we can confirm it instantly.
+      <div class="co-field" style="margin-top:10px;">
+        <label for="coMpesaCode">M-Pesa code (optional if paying after confirmation)</label>
+        <input type="text" id="coMpesaCode" placeholder="e.g. QAB1C2D3E4">
+      </div>
+    </div>
+
+    <p class="error" id="coError">Please add your name, email and phone number.</p>
+    <a class="btn" href="#" id="coSubmit">Complete order on WhatsApp</a>
+  </div>
+</div>
+
+<a class="whatsapp-fab" href="https://wa.me/254742820663?text=Hi%20Pumua%2C%20I%27d%20like%20to%20know%20more%20about%20the%20nasal%20strips." target="_blank" rel="noopener" aria-label="Chat with Pumua on WhatsApp">
+  <span class="ping"></span>
+  <svg viewBox="0 0 32 32" fill="white"><path d="M16.01 3C9.38 3 4 8.36 4 15c0 2.2.6 4.26 1.65 6.04L4 29l8.15-1.6A11.9 11.9 0 0 0 16.01 27C22.64 27 28 21.64 28 15S22.64 3 16.01 3Zm0 21.7c-1.94 0-3.75-.53-5.3-1.46l-.38-.22-4.83.95.98-4.71-.25-.4A9.63 9.63 0 0 1 6.3 15c0-5.36 4.36-9.7 9.71-9.7 5.36 0 9.7 4.34 9.7 9.7 0 5.36-4.34 9.7-9.7 9.7Zm5.32-7.27c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.15-.17.2-.34.22-.63.07-.29-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.48-.5-.66-.5h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.44s1.04 2.83 1.19 3.02c.15.2 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.55-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.13-.26-.2-.55-.35Z"/></svg>
+</a>
 <script>
   const sections = Array.from(document.querySelectorAll('section'));
   const dotsNav = document.getElementById('dots');
@@ -1193,7 +1263,14 @@
     cart.qty++; renderCheckout();
   });
 
-  const PAYSTACK_PUBLIC_KEY = 'pk_live_f56a135aa026de0bf7a7e28ff0db627c2da42559';
+  // =====================================================================
+  // PAYSTACK SETUP — replace PAYSTACK_PUBLIC_KEY with your real public key
+  // from your Paystack dashboard: Settings -> API Keys & Webhooks -> Public Key.
+  // It's safe to put the PUBLIC key here (never the secret key).
+  // While this is unset (or invalid), "Pay now" quietly falls back to the
+  // WhatsApp order flow instead of failing.
+  // =====================================================================
+  const PAYSTACK_PUBLIC_KEY = 'pk_test_REPLACE_WITH_YOUR_PAYSTACK_PUBLIC_KEY';
 
   const mpesaBox = document.getElementById('coMpesaBox');
   document.querySelectorAll('input[name="coPay"]').forEach(r=>{
@@ -1266,69 +1343,5 @@
     closeCheckout();
   });
 </script>
-<div id="checkoutOverlay">
-  <div id="checkoutPanel">
-    <button class="close" id="checkoutClose" aria-label="Close checkout">&times;</button>
-    <h3>Complete your order</h3>
-    <p class="sub-note">We'll confirm on WhatsApp and arrange payment or delivery.</p>
-
-    <div class="co-summary">
-      <div class="row">
-        <span class="plan-name" id="coPlanName">Best value</span>
-        <span id="coPlanUnit">30 strips</span>
-      </div>
-      <div class="row">
-        <span>Quantity</span>
-        <span class="qty-ctrl">
-          <button type="button" id="coQtyMinus">&minus;</button>
-          <span id="coQty">1</span>
-          <button type="button" id="coQtyPlus">&plus;</button>
-        </span>
-      </div>
-      <div class="row total">
-        <span>Total</span>
-        <b id="coTotal">KSh 900</b>
-      </div>
-    </div>
-
-    <div class="co-field">
-      <label for="coName">Full name</label>
-      <input type="text" id="coName" placeholder="Jane Wanjiru">
-    </div>
-    <div class="co-field">
-      <label for="coEmail">Email</label>
-      <input type="email" id="coEmail" placeholder="jane@example.com">
-    </div>
-    <div class="co-field">
-      <label for="coPhone">Phone number</label>
-      <input type="tel" id="coPhone" placeholder="07XX XXX XXX">
-    </div>
-    <div class="co-field">
-      <label for="coLocation">Delivery location</label>
-      <input type="text" id="coLocation" placeholder="Estate / area, Nairobi">
-    </div>
-
-    <div class="co-pay-options">
-      <label><input type="radio" name="coPay" value="paystack" checked> Pay now — Card / M-Pesa</label>
-      <label><input type="radio" name="coPay" value="mpesa"> M-Pesa Till (manual)</label>
-      <label><input type="radio" name="coPay" value="cod"> Cash on delivery (Nairobi)</label>
-    </div>
-    <div class="co-mpesa-box" id="coMpesaBox">
-      Send payment to <b>M-Pesa Till: 000000</b> (placeholder — swap in your real Till/Paybill), then add the M-Pesa message code below so we can confirm it instantly.
-      <div class="co-field" style="margin-top:10px;">
-        <label for="coMpesaCode">M-Pesa code (optional if paying after confirmation)</label>
-        <input type="text" id="coMpesaCode" placeholder="e.g. QAB1C2D3E4">
-      </div>
-    </div>
-
-    <p class="error" id="coError">Please add your name, email and phone number.</p>
-    <a class="btn" href="#" id="coSubmit">Complete order on WhatsApp</a>
-  </div>
-</div>
-
-<a class="whatsapp-fab" href="https://wa.me/254742820663?text=Hi%20Pumua%2C%20I%27d%20like%20to%20know%20more%20about%20the%20nasal%20strips." target="_blank" rel="noopener" aria-label="Chat with Pumua on WhatsApp">
-  <span class="ping"></span>
-  <svg viewBox="0 0 32 32" fill="white"><path d="M16.01 3C9.38 3 4 8.36 4 15c0 2.2.6 4.26 1.65 6.04L4 29l8.15-1.6A11.9 11.9 0 0 0 16.01 27C22.64 27 28 21.64 28 15S22.64 3 16.01 3Zm0 21.7c-1.94 0-3.75-.53-5.3-1.46l-.38-.22-4.83.95.98-4.71-.25-.4A9.63 9.63 0 0 1 6.3 15c0-5.36 4.36-9.7 9.71-9.7 5.36 0 9.7 4.34 9.7 9.7 0 5.36-4.34 9.7-9.7 9.7Zm5.32-7.27c-.29-.15-1.72-.85-1.99-.95-.27-.1-.46-.15-.66.15-.2.29-.76.95-.93 1.15-.17.2-.34.22-.63.07-.29-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.51-.07-.15-.66-1.59-.9-2.18-.24-.57-.48-.5-.66-.5h-.56c-.2 0-.51.07-.78.37-.27.29-1.02 1-1.02 2.44s1.04 2.83 1.19 3.02c.15.2 2.05 3.13 4.96 4.39.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.55-.08 1.72-.7 1.96-1.38.24-.68.24-1.26.17-1.38-.07-.13-.26-.2-.55-.35Z"/></svg>
-</a>
 </body>
 </html>
