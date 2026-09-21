@@ -102,6 +102,92 @@ section:nth-of-type(7) { background-image: url('IMG_1386.JPG'); }
     width:100%;
   }
 
+  /* ---------- Paystack Checkout Card ---------- */
+  .checkout-card {
+    background: rgba(14, 22, 38, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    text-align: center;
+  }
+
+  .price-tag {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--orange);
+    margin: 16px 0 8px 0;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  .price-sub {
+    font-size: 0.95rem;
+    color: var(--slate-dim);
+    margin-bottom: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+    text-align: left;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--slate);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--charcoal);
+    border: 1px solid rgba(255,94,0,0.3);
+    border-radius: 8px;
+    color: var(--crisp-ice);
+    font-size: 1px;
+    font-family: inherit;
+    transition: border-color 0.2s ease;
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: var(--orange);
+  }
+
+  .pay-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--orange);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+    margin-top: 12px;
+  }
+
+  .pay-btn:hover {
+    background: var(--orange-dim);
+  }
+
+  .pay-btn:active {
+    transform: scale(0.99);
+  }
+
+  .payment-methods {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+    font-size: 0.8rem;
+    color: var(--slate-dim);
+  }
   /* generic brand-mark texture, tinted with mask */
   .mark{
     position:absolute;
@@ -904,6 +990,7 @@ section:nth-of-type(7) { background-image: url('IMG_1386.JPG'); }
 <nav id="dots" aria-label="Section navigation"></nav>
 
 <div id="scroller">
+  
 
   <!-- ============ HERO ============ -->
   <section id="hero" data-idx="0">
@@ -1297,6 +1384,51 @@ section:nth-of-type(7) { background-image: url('IMG_1386.JPG'); }
   // =====================================================================
   const PAYSTACK_PUBLIC_KEY = 'pk_live_f56a135aa026de0bf7a7e28ff0db627c2da42559';
 
+  function payWithPaystack(e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email-address").value;
+    const fullName = document.getElementById("full-name").value;
+    const phone = document.getElementById("phone-number").value;
+    
+    // Amount in subunits (KES cents => KES 6200 * 100)
+    const amountInCents = 620000;
+
+    let handler = PaystackPop.setup({
+      // Replace with your actual Paystack Public Key (pk_live_... or pk_test_...)
+      key: 'pk_live_f56a135aa026de0bf7a7e28ff0db627c2da42559', 
+      email: email,
+      amount: amountInCents,
+      currency: 'KES',
+      ref: 'PUMUA_' + Math.floor((Math.random() * 1000000000) + 1),
+      metadata: {
+        custom_fields: [
+          {
+            display_name: "Customer Name",
+            variable_name: "customer_name",
+            value: fullName
+          },
+          {
+            display_name: "Phone Number",
+            variable_name: "phone_number",
+            value: phone
+          }
+        ]
+      },
+      onClose: function() {
+        alert('Transaction cancelled.');
+      },
+      callback: function(response) {
+        // Payment successful!
+        alert('Payment successful! Transaction reference: ' + response.reference);
+        // You can redirect to a thank-you page here:
+        // window.location.href = "/thank-you.html?ref=" + response.reference;
+      }
+    });
+
+    handler.openIframe();
+  }
+  
   const mpesaBox = document.getElementById('coMpesaBox');
   document.querySelectorAll('input[name="coPay"]').forEach(r=>{
     r.addEventListener('change', ()=>{
