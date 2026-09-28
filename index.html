@@ -515,6 +515,30 @@ section:nth-of-type(7) { background-image: url('IMG_1386.JPG'); }
       repeating-linear-gradient(115deg, rgba(255,94,0,0.09) 0 1px, transparent 1px 52px);
     z-index:0;
   }
+  #problem .inner{ max-width:1000px; }
+
+#problem .problem-photo{
+  width:100%;
+  height:100%;
+  min-height:280px;
+  max-height:520px;
+  object-fit:cover;
+  border-radius:12px;
+  border:1px solid rgba(226,232,240,0.12);
+  box-shadow:0 24px 60px -20px rgba(0,0,0,.7);
+}
+
+@media (min-width:860px){
+  #problem .grid{
+    grid-template-columns:1.1fr 0.9fr;
+    column-gap:56px;
+    align-items:center;
+  }
+  #problem .problem-photo{
+    grid-column:2;
+    grid-row:1 / span 2;   /* sits beside both the text and the stats */
+  }
+}
   #problem .mark{
     width:380px; height:380px;
     right:-90px; bottom:-70px;
@@ -558,11 +582,12 @@ section:nth-of-type(7) { background-image: url('IMG_1386.JPG'); }
     transform:rotate(10deg);
     opacity:.1;
   }
+  #product .inner{ max-width:1100px; }
   #product .layout{
     display:grid;
     grid-template-columns:1fr;
     gap:56px;
-    max-width:900px;
+    max-width:1100px;
     align-items:center;
   }
   @media (min-width:860px){
@@ -570,7 +595,7 @@ section:nth-of-type(7) { background-image: url('IMG_1386.JPG'); }
   }
   #product .strip-art{
     position:relative;
-    height:260px;
+    height:320px;
     display:flex;
     align-items:center;
     justify-content:center;
@@ -983,7 +1008,7 @@ section:nth-of-type(7) { background-image: url('IMG_1386.JPG'); }
   
 
   <!-- ============ HERO ============ -->
-  <section id="hero" data-idx="0" style="background-image:linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('IMG_1389.JPG'); background-size: cover; background-position: right;">
+  <section id="hero" data-idx="0">
     <div class="mark"></div>
     <div class="inner">
       <div class="hero-grid">
@@ -1057,6 +1082,8 @@ section:nth-of-type(7) { background-image: url('IMG_1386.JPG'); }
         <div class="stat"><b>31%</b><span>more airflow with strips lifted in place</span></div>
         <div class="stat"><b>0</b><span>drugs, sprays, or side effects</span></div>
         <div class="stat"><b>12h</b><span>hold, through sleep or a long session</span></div>
+         <img class="problem-photo reveal d2" src="IMG_1285.jpeg" alt="Athlete struggling to breathe"
+         onerror="this.style.display='none'">
       </div>
     </div>
   </section>
@@ -1066,7 +1093,7 @@ section:nth-of-type(7) { background-image: url('IMG_1386.JPG'); }
     <div class="mark"></div>
     <div class="inner layout">
       <div class="strip-art reveal" style="overflow:hidden;">
-       <img src="pu.png" alt="Pumua nasal strip"
+       <img src="IMG_1386.JPG" alt="Pumua nasal strip"
        style="width:100%;height:100%;object-fit:contain;"
        onerror="this.parentElement.textContent='Add product image — YOUR-FILENAME-HERE.jpg';">
 
